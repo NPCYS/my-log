@@ -11,7 +11,8 @@ public enum AppHttpCodeEnum {
      PHONENUMBER_EXIST(502,"手机号已存在"), EMAIL_EXIST(503, "邮箱已存在"),
     REQUIRE_USERNAME(504, "必需填写用户名"),
     LOGIN_ERROR(505,"用户名或密码错误"),
-    REQUIRE_COMMENT(506,"评论不能为空~");
+    REQUIRE_COMMENT(506,"评论不能为空~"),
+    FILE_TYPE_ERROR(507,"上传文件类型错误");
     int code;
     String msg;
 

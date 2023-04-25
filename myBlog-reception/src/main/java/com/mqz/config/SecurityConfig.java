@@ -46,6 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .antMatchers("/link/getAllLink").authenticated()
                 .antMatchers("/logout").authenticated()
                 .antMatchers("/comment").authenticated()
+//                .antMatchers("/upload").authenticated()
                 // 除上面外的所有请求全部不需要认证即可访问
                 .anyRequest().permitAll();
         //关闭SpringSecurity默认的退出登录页面
