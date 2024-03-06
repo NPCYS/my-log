@@ -2,6 +2,7 @@ package com.mqz.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.mqz.domin.ResponseResult;
+import com.mqz.domin.dto.LinkListDto;
 import com.mqz.domin.entity.Link;
 
 
@@ -14,5 +15,7 @@ import com.mqz.domin.entity.Link;
 public interface LinkService extends IService<Link> {
 
     ResponseResult getAllLink();
+
+    ResponseResult getLinkList(Integer pageNum, Integer pageSize, LinkListDto linkListDto);
 }
 

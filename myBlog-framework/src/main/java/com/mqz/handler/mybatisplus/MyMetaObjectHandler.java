@@ -31,6 +31,7 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
     @Override
     public void updateFill(MetaObject metaObject) {
         this.setFieldValByName("updateTime", new Date(), metaObject);
-        this.setFieldValByName(" ", SecurityUtils.getUserId(), metaObject);
+        //不知道为啥一直空指针
+//        this.setFieldValByName(" ", SecurityUtils.getUserId(), metaObject);
     }
 }

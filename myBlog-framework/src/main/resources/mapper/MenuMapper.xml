@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mqz.mapper.MenuMapper">
+    <select id="getPermissions" resultType="java.lang.String">
+        SELECT DISTINCT m.perms
+        FROM sys_user u
+                 LEFT JOIN sys_user_role u_r
+                           ON u.id = u_r.user_id
+                 LEFT JOIN sys_role_menu r_m
+                           ON u_r.role_id = r_m.role_id
+                 LEFT JOIN sys_menu m
+                           ON r_m.menu_id = m.id
+        WHERE u.id = #{userId}
+          AND m.menu_type IN ('C','F')
+          AND u.type = 1
+          AND m.`status` = 0
+    </select>
+    <select id="getMenus" resultType="com.mqz.domin.entity.Menu">
+        SELECT DISTINCT m.*
+        FROM sys_role_menu rm
+                 LEFT JOIN sys_menu m
+                           ON rm.menu_id = m.id
+        WHERE menu_type IN ('C','M')
+          AND rm.role_id = #{roleId}
+          AND m.`status` = 0
+          AND m.del_flag = 0
+        ORDER BY
+            m.parent_id,m.order_num
+    </select>
+    <select id="getMenusById" resultType="com.mqz.domin.entity.Menu">
+        SELECT DISTINCT m.*
+        FROM sys_user u
+                 LEFT JOIN sys_user_role u_r
+                           ON u.id = u_r.user_id
+                 LEFT JOIN sys_role_menu r_m
+                           ON u_r.role_id = r_m.role_id
+                 LEFT JOIN sys_menu m
+                           ON r_m.menu_id = m.id
+        WHERE u.id = #{userId}
+          AND m.menu_type IN ('C','M')
+          AND u.type = 1
+          AND m.`status` = 0
+    </select>
+</mapper>

@@ -2,7 +2,11 @@ package com.mqz.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.mqz.domin.ResponseResult;
+import com.mqz.domin.dto.CategoryListDto;
 import com.mqz.domin.entity.Category;
+import com.mqz.domin.vo.ExcelCategoryVo;
+
+import java.util.List;
 
 
 /**
@@ -14,5 +18,19 @@ import com.mqz.domin.entity.Category;
 public interface CategoryService extends IService<Category> {
 
     ResponseResult getCategoryList();
+
+    ResponseResult listAllCategory();
+
+    ResponseResult CategoryList(Integer pageNum, Integer pageSize, CategoryListDto categoryListDto);
+
+    ResponseResult addCategory(Category category);
+
+    ResponseResult getOneCategory(Long id);
+
+    ResponseResult updateCategory(Category category);
+
+    ResponseResult deleteCategory(List<Long> ids);
+
+    List<ExcelCategoryVo> listExcelCategory();
 }
 

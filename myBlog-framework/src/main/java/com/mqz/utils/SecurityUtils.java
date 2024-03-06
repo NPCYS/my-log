@@ -3,7 +3,6 @@ package com.mqz.utils;
 import com.mqz.domin.entity.LoginUser;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-
 public class SecurityUtils
 {
 
@@ -24,10 +23,15 @@ public class SecurityUtils
 
     public static Boolean isAdmin(){
         Long id = getLoginUser().getUser().getId();
-        return id != null && 1L == id;
+        return id != null && id.equals(1L);
     }
 
     public static Long getUserId() {
-        return getLoginUser().getUser().getId();
+        if (getLoginUser()==null){
+            return null;
+        }
+        Long id = getLoginUser().getUser().getId();
+
+        return id;
     }
 }

@@ -6,10 +6,7 @@ import com.mqz.service.ArticleService;
 import org.apache.commons.collections4.Get;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,11 +25,15 @@ public class ArticleController {
         return articleService.hotArlticeList();
     }
     @GetMapping("/articleList")
-    public ResponseResult articleList(Long pageNum,Long pageSize,Long CategoryId){
-        return articleService.articleList(pageNum,pageSize,CategoryId);
+    public ResponseResult articleList(Long pageNum,Long pageSize,Long categoryId){
+        return articleService.articleList(pageNum,pageSize,categoryId);
     }
     @GetMapping("/{id}")
         public ResponseResult getArticleDetail(@PathVariable("id") Long id){
         return articleService.getArticleDetail(id);
         }
+    @PutMapping("/updateViewCount/{id}")
+    public ResponseResult updateViewCount(@PathVariable("id") Long id){
+                return articleService.updateViewCount(id);
+    }
 }

@@ -18,8 +18,6 @@ public class GlobalExceptionHandler {
         //从异常对象中获取提示信息封装返回
         return ResponseResult.errorResult(e.getCode(),e.getMsg());
     }
-
-
     @ExceptionHandler(Exception.class)
     public ResponseResult exceptionHandler(Exception e){
         //打印异常信息

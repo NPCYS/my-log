@@ -1,15 +1,19 @@
 package com.mqz.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.mqz.domin.ResponseResult;
+import com.mqz.domin.dto.LinkListDto;
 import com.mqz.domin.entity.Link;
 import com.mqz.domin.vo.LinkVo;
+import com.mqz.domin.vo.PageVo;
 import com.mqz.mapper.LinkMapper;
 import com.mqz.service.LinkService;
 import com.mqz.utils.BeanCopyUtils;
 import org.apache.commons.collections4.ListUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.awt.*;
 import java.util.List;
@@ -36,5 +40,16 @@ public class LinkServiceImpl extends ServiceImpl<LinkMapper, Link> implements Li
             return ResponseResult.okResult("友链为空！");
         }
         return ResponseResult.okResult(linkVos);
+    }
+
+    @Override
+    public ResponseResult getLinkList(Integer pageNum, Integer pageSize, LinkListDto linkListDto) {
+        Page<Link> linkPage = new Page<>(pageNum, pageSize);
+        LambdaQueryWrapper<Link> linkLambdaQueryWrapper = new LambdaQueryWrapper<>();
+        linkLambdaQueryWrapper.like(StringUtils.hasText(linkListDto.getName()),Link::getName,linkListDto.getName());
+        linkLambdaQueryWrapper.like(StringUtils.hasText(linkListDto.getStatus()),Link::getStatus,linkListDto.getStatus());
+        Page<Link> page = page(linkPage, linkLambdaQueryWrapper);
+        PageVo pageVo = new PageVo(page.getRecords(), page.getTotal());
+        return ResponseResult.okResult(pageVo);
     }
 }

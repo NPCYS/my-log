@@ -14,6 +14,8 @@ public class SystemConstants
      *分类状态时正常的
      */
     public static final int CATEGORY_STATUS_NORMAL = 0;
+    public static final int TAG_STATUS_NORMAL = 0;
+    public static final int MENU_STATUS_NORMAL = 0;
     /**
      *分类状态时不正常的
      */
@@ -34,6 +36,8 @@ public class SystemConstants
      * 前台登录所用的查询redis的签注
      */
     public static final String LOGIN_REDIS_KEY_PREFIX = "bloglogin:id:";
+    public static final String ADMIN_LOGIN_REDIS_KEY_PREFIX = "login:id:";
+    public static final String PageView_REDIS_KEY_PREFIX = "pageView:id:";
     /**
      * token头
      */
@@ -54,4 +58,17 @@ public class SystemConstants
      * 友链Type
      */
     public static final String LINK_TYPE = "1";
+    /**
+     * 后台菜单的父节点id
+     */
+    public static final long BACKGROUND_PARENTID = 0L;
+    /**
+     * 确认删除的标志
+     */
+    public static final int CONFIRM_DELETE = 1;
+
+    public static final String ADMIN = "1";
+
+    public static final String TREE_SELECT="menu:allMenu";
+    public static final String TREE_SELECT_ONE="menu:OneMenu";
 }

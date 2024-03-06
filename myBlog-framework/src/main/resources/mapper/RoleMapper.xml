@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mqz.mapper.RoleMapper">
+    <select id="getRole" resultType="java.lang.Long">
+        SELECT DISTINCT ur.role_id
+        FROM sys_user u
+                 LEFT JOIN sys_user_role ur
+                           ON u.id = ur.user_id
+        WHERE u.id =#{userId}
+          AND u.type = 1
+          AND u.`status` = 0
+          AND u.del_flag = 0
+    </select>
+</mapper>

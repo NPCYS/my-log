@@ -2,6 +2,8 @@ package com.mqz.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.mqz.domin.ResponseResult;
+import com.mqz.domin.dto.UserListDto;
+import com.mqz.domin.dto.UserStatusDto;
 import com.mqz.domin.entity.User;
 import com.mqz.domin.vo.UserInfoVo;
 
@@ -17,5 +19,11 @@ public interface UserService extends IService<User> {
     ResponseResult userInfo();
 
     ResponseResult updateUserInfo(UserInfoVo userInfoVo);
+
+    ResponseResult register(User user);
+
+    ResponseResult getUserList(Integer pageNum, Integer pageSize, UserListDto userListDto);
+
+    ResponseResult changeStatus(UserStatusDto userStatusDto);
 }
 
